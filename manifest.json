@@ -2,24 +2,16 @@
   "name": "EASY LGTM",
   "description": "LGTMを手軽に",
   "version": "2.3",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "icons": {
     "16": "icons/icon16.png",
     "128": "icons/icon128.png"
   },
-  "permissions": [
+  "host_permissions": [
     "http://suikatyan.sakura.ne.jp/*"
   ],
   "background": {
-    "scripts": [
-      "js/lib/jquery.js",
-      "js/common/Utilities.js",
-      "js/backend/Storage.js",
-      "js/backend/LgtmImage.js",
-      "js/backend/ImageService.js",
-      "js/backend/Backend.js",
-      "js/backend/index.js"
-    ]
+    "service_worker": "js/backend/service-worker.js"
   },
   "content_scripts": [
     {
@@ -44,6 +36,9 @@
     }
   ],
   "web_accessible_resources": [
-    "templates/*"
+    {
+      "resources": ["templates/*"],
+      "matches": ["https://github.com/*"]
+    }
   ]
 }
